@@ -10,6 +10,26 @@
 			$this->_conect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);		
 		}
 
+		//Returns genre(categories) Objects array or 
+		//a only one genre in array if receives a id as a paramenter
+		public function getCategories($id = ""){
+			$res = $this->_conect->query(
+				//Carmen SQL
+			);
+			$categoriesList = $res->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'genre');
+			return $categoriesList;
+		}
+
+		//Returns movie(articles) Objest array or
+		//a only one movie in array if receives a id as a paremeter
+		public function getArticles($id = ""){
+			$res = $this->_conect->query(
+				//Carmen SQL
+			);
+			$articlesList = $res->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'movie');
+			return $articlesList;
+		}
+
 		
 	}
 ?>
