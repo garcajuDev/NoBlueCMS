@@ -12,9 +12,11 @@
 
 		//Returns genre(categories) Objects array or 
 		//a only one genre in array if receives a id as a paramenter
-		public function getCategories($id = ""){
+		public function getCategories(){
 			$res = $this->_conect->query(
 				//Carmen SQL
+				//Mio provisional
+				"SELECT * FROM categories; "
 			);
 			$categoriesList = $res->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'genre');
 			return $categoriesList;
@@ -22,7 +24,7 @@
 
 		//Returns movie(articles) Objest array or
 		//a only one movie in array if receives a id as a paremeter
-		public function getArticles($id = ""){
+		public function getArticles($id){
 			$res = $this->_conect->query(
 				//Carmen SQL
 			);
