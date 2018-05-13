@@ -33,5 +33,10 @@
 	};
 
 	$app->get("/", "\Controller:loadHome");
+	$app->get("/categoria/{cod}", "\Controller:loadCategoryScreen");
+
+	//API
+	$app->get("/api/categorias", "\Controller:getCategoriesAPI");
+	$app->get("/api/categorias/{id}", "\Controller:getCategoriesAPIId");
 	$app->run();
 ?>

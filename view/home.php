@@ -17,7 +17,6 @@
 	<link rel="stylesheet" href="estilos.css">
 </head>
 
-
 <body>
 	<div class="container-fluid">
 
@@ -57,7 +56,8 @@
 					   	<?php  
 					       	foreach ($founded as $key => $cat) {
 					       		$nameCat = $cat->name;
-					       		echo "<a class='dropdown-item' href='#'>Películas de {$nameCat}</a>";
+					       		$id = $cat->id;
+ 					       		echo "<a class='dropdown-item' href='{$urlBase}/categoria/{$id}'>Películas de {$nameCat}</a>";
 					       	}
 					    ?>
 					<div class="dropdown-divider"></div>
@@ -68,25 +68,23 @@
 	</div>
 
 	<div class="container">
-
-
-
 			<div class="main mt-5">
 				<h3 class="mb-3">CATEGORIAS DE PELÍCULAS</h3>
 				<div class="card-deck mb-5">
 					<?php 
 						foreach ($founded as $key => $category) {
+							$id = $category->id;
 							$name = $category->name;
 							$photo = $category->photo;
 							$description = $category->description;
 
 							echo "<div class='card w-25'>";
-							echo "<img class='card-img-top' src='{$photo}' alt='Card image cap'>";
+							echo "<img class='card-img-top' src='{$urlBase}{$photo}' alt='Card image cap'>";
 							echo "<div class='card-body'>";
 							echo "<h4 class='h4_categoria'>{$name}</h4>";
 							echo "<p>{$description}</p>";
 							echo "<div class='card-footer'>";
-							echo "<a href='#' class='btn btn-primary'>Continuar <i class='fas fa-angle-double-right'></i></a>";
+							echo "<a href='{$urlBase}/categoria/{$id}' class='btn btn-primary'>Continuar <i class='fas fa-angle-double-right'></i></a>";
 							echo "</div>";
 							echo "</div>";
 							echo "</div>";
@@ -94,33 +92,30 @@
 					?>
 				</div>
 			</div>
-
-			<hr>
+		<hr>
 	</div>
-	<section class="main_bottom mt-5" style="background-color:  #ccd1d1;">
-	<div class="container">
-				<div class="row mb-4">
-					<div class="col-lg-3">
-						<h3 class="mt-1">ÚLTIMAS PELÍCULAS AÑADIDAS:</h3>
-						<h4 class="h4_consulta">Consulta aquí las<br/> últimas novedades<br/> de nuestro catálogo<br/> de películas</h4>
-					</div>
-					<div class="col-lg-3">
-						<img class="card-img-top mb-4 img-thumbnail" src="img/novedades1.jpg" alt="Card image cap">
-						<h6><strong>Titulo película:</strong> STAR TREK</h6>
-						<h6><strong>Fecha:</strong> 15/08/2018</h6>
-					</div>
-					<div class="col-lg-3">
-						<img class="card-img-top mb-4 img-thumbnail"  src="img/novedades2.jpg" alt="Card image cap">
-						<h6><strong>Titulo película:</strong> TRAINSPOTTING</h6>
-						<h6><strong>Fecha:</strong> 17/08/2018</h6>
-					</div>
-					<div class="col-lg-3">
-						<img class="card-img-top mb-4 img-thumbnail" src="img/novedades3.jpg" alt="Card image cap">
-						<h6><strong>Titulo película:</strong> FORT APACHE</h6>
-						<h6><strong>Fecha:</strong> 19/08/2018 </h6>
-					</div>
+	<section class="main_bottom mt-5" style="background-color:  #ccd1d1; padding-top: 15px;">
+		<div class="container">
+			<div class="row mb-4">
+				<div class="col-lg-3">
+					<h3 class="mt-1">ÚLTIMAS PELÍCULAS AÑADIDAS:</h3>
+					<h4 class="h4_consulta">Consulta aquí las<br/> últimas novedades<br/> de nuestro catálogo<br/> de películas</h4>
 				</div>
-	</div>
+				<?php
+					foreach ($articles as $article) {
+					  	$title = $article->title;
+					  	$fecha = $article->dateAdd;
+					  	$photo = $article->photo;
+
+					  	echo "<div class='col-lg-3'>";
+						echo "<img class='card-img-top mb-4 img-thumbnail' src='{$urlBase}{$photo}' alt='Card image cap'>";
+						echo "<h4>{$title}</h4>";
+						echo "<p><strong>Fecha:</strong> {$fecha}</p>";
+						echo "</div>";
+					}  
+				?>
+			</div>
+		</div>
 	</section>
 
 			<hr>
@@ -134,6 +129,5 @@
 				<li><a href="#">BlueCMS</a></li>
 			</ul>
 		</footer>
-
 </body>
 </html>
