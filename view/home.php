@@ -14,7 +14,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
-	<link rel="stylesheet" href="estilos.css">
+	<link rel="stylesheet" href="<?php echo $urlBase; ?>/view/css/estilos.css">
 </head>
 
 <body>
@@ -69,8 +69,8 @@
 
 	<div class="container">
 			<div class="main mt-5">
-				<h3 class="mb-3">CATEGORIAS DE PELÍCULAS</h3>
-				<div class="card-deck mb-5">
+				<h3 class="mb-3">CATEGORIAS DE PELÍCULAS</h3>	
+					<div class="card-deck mb-5">
 					<?php 
 						foreach ($founded as $key => $category) {
 							$id = $category->id;
@@ -78,22 +78,33 @@
 							$photo = $category->photo;
 							$description = $category->description;
 
-							echo "<div class='card w-25'>";
+							echo "<div class='tarjeta card'>";
 							echo "<img class='card-img-top' src='{$urlBase}{$photo}' alt='Card image cap'>";
 							echo "<div class='card-body'>";
 							echo "<h4 class='h4_categoria'>{$name}</h4>";
 							echo "<p>{$description}</p>";
-							echo "<div class='card-footer'>";
-							echo "<a href='{$urlBase}/categoria/{$id}' class='btn btn-primary'>Continuar <i class='fas fa-angle-double-right'></i></a>";
+							echo "<hr>";
 							echo "</div>";
-							echo "</div>";
+
+							echo "<a href='{$urlBase}/categoria/{$id}' class='boton btn text-center btn-sm text-white'>Continuar <i class='fas fa-angle-double-right'></i></a>";
 							echo "</div>";
 						}
 					?>
 				</div>
 			</div>
+		</div>
 		<hr>
 	</div>
+
+	<!--<div class="tarjeta card">
+					    <img class="card-img-top" src="img/accion.jpg" alt="Card image cap">
+					    <div class="card-body">
+					      <h4 class="h4_categorias">Acción y Aventuras</h4>
+					      <hr>
+					    </div>
+					    <a href="accion.php" class="boton btn text-center btn-sm text-white">Continuar <i class="fas fa-angle-double-right"></i></a>
+					  </div>-->
+
 	<section class="main_bottom mt-5" style="background-color:  #ccd1d1; padding-top: 15px;">
 		<div class="container">
 			<div class="row mb-4">

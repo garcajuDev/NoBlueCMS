@@ -14,20 +14,36 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
-	<link rel="stylesheet" href="estilos.css">
+	<link rel="stylesheet" href="<?php echo $urlBase; ?>/view/css/estilos.css">
 </head>
 
 <body>
 	<div class="container-fluid">
 
-		<div class="header text-center text-white" style="margin-top: 10px;"></div>
+		<div class="header text-center text-white" style="margin-bottom: 10px;"></div>
 			<nav aria-label="breadcrumb">
   				<ol class="breadcrumb">
     				<li class="breadcrumb-item"><a href="../">Home</a></li>
     				<li class="breadcrumb-item active" aria-current="page">Categorias</li>
   				</ol>
 		</nav>
-		<img src="<?php echo "{$urlBase}/view/img/cat_banner.jpg";?>" style="width: 100%;"></img>
+	</div>
+
+	<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+  		<div class="carousel-inner">
+    		<div class="carousel-item active">
+     			<img class="d-block w-100" src="<?php echo $urlBase;?>/view/img/carrousel1.png" alt="Cinema">
+    		</div>
+    		<div class="carousel-item">
+      			<img class="d-block w-100" src="<?php echo $urlBase;?>/view/img/carrousel2.png" alt="Avengers">
+    		</div>
+    		<div class="carousel-item">
+      			<img class="d-block w-100" src="<?php echo $urlBase;?>/view/img/carrousel3.png" alt="Titanic">
+    		</div>
+    		<div class="carousel-item">
+      			<img class="d-block w-100" src="<?php echo $urlBase;?>/view/img/carrousel4.png" alt="Rogue One Stars Wars">
+    		</div>
+  		</div>
 	</div>
 	
 	<div class="nav justify-content-center" style="background-color:#004080; margin: 10px; border-radius: 5px;">
@@ -54,19 +70,24 @@
 
 	
 	<div class="container">
-		<div class="list-group">
+		<div class="categorias mt-5">
+			<hr>
+			<div class="card-deck mt-4 mb-5">
 			<?php  
 				foreach ($articles as $key => $article) {
 					$title = $article->title;
 					$photo = $article->photo;
 					$date = $article->dateAdd;
-					echo "<a href='#'' class='list-group-item list-group-item-action list-group-item-warning'>";
-					echo "<div class='d-flex justify-content-between'>";
-					echo "<h3 class='mb-1'>{$title}</h3>";
-					echo "<img src='{$urlBase}{$photo}' width='120'></img>";
-					echo "</div>";
+					echo "<div class='card'>";
+					echo "<img src='{$urlBase}{$photo}' class='card-img-top'></img>";
+					echo "<div class='card-body'>";
+					echo "<h5 class='card-title_ok'>{$title}</h5>";				
+					echo "<hr>";
 					echo "<small>{$date}</small>";
 					echo "</a>";
+					echo "</div>";
+					echo "<a href='dossier.php' class='boton btn btn-dark text-center'>Continuar <i class='fas fa-angle-double-right'></i></a>";
+					echo "</div>";
 				}
 			?>
 		</div>
