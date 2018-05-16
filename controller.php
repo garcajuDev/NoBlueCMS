@@ -25,6 +25,13 @@
 			return $response;
 		}
 
+		public function loadArticleScreen($request, $response, $args){
+			$url = $args['url'];
+			$result['movie'] = $this->c->modelo->getArticleByUrl($url);
+			$response = $this->c->view->render($response, "article.php", $result);
+			return $response;
+		}
+
 		public function getCategoriesAPI($request, $response, $args){
 			$res = $this->c->modelo->getCategories();
 			foreach ($res as $key => $category) {
@@ -48,6 +55,70 @@
 			}
 			$response = $response->withJson($result);
 			return $response;
+		}
+
+		public function getArticleAPIId($request, $response, $args){
+			$id = $args['id'];
+			$res = $this->c->modelo->getArticle($id);
+			//var_dump($res);
+			foreach ($res as $key => $article) {
+				$result[$key]['id'] = $article->id;
+				$result[$key]['title'] = $article->title;
+				$result[$key]['title_url'] = $article->title_url;
+				$result[$key]['photo'] = $article->photo;
+				$result[$key]['dateAdd'] = $article->dateAdd;
+				$result[$key]['content_url'] = $article->content_url;
+				$result[$key]['username'] = $article->username;
+			}
+			$response = $response->withJson($result);
+			return $response;
+		}
+
+		public function getArticlesAPIFilter($request, $response, $args){
+			$minim = $request->getQueryParam('min');
+			$maxim = $request->getQueryParam('max');
+			$nArticles = $request->getQueryParam('n');
+			if ($minim != null) {
+				$res = $this->getArticlesAPIMin($min);
+				foreach ($res as $key => $article) {
+					$result[$key]['id'] = $article->id;
+					$result[$key]['title'] = $article->title;
+					$result[$key]['title_url'] = $article->title_url;
+					$result[$key]['photo'] = $article->photo;
+					$result[$key]['dateAdd'] = $article->dateAdd;
+					$result[$key]['content_url'] = $article->content_url;
+					$result[$key]['username'] = $article->username;
+				}
+				$response = $response->withJson($result);
+				return $response;
+			}
+			if ($maxim != null) {
+				$res = $this->getArticlesAPIMax($max);
+				foreach ($res as $key => $article) {
+					$result[$key]['id'] = $article->id;
+					$result[$key]['title'] = $article->title;
+					$result[$key]['title_url'] = $article->title_url;
+					$result[$key]['photo'] = $article->photo;
+					$result[$key]['dateAdd'] = $article->dateAdd;
+					$result[$key]['content_url'] = $article->content_url;
+					$result[$key]['username'] = $article->username;
+				}
+				$response = $response->withJson($result);
+				return $response;
+			}
+			/*if ($nArticles != null) {
+				
+			}*/
+		}
+
+		public function getArticlesAPIMin($min){
+			$articles = $this->c->modelo->getArticlesMin($min);
+			return $articles;
+		}
+
+		public function getArticlesAPIMax($max){
+			$articles = $this->c->modelo->getArticlesMax($max);
+			return $articles;
 		}
 	}
 ?>

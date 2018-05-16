@@ -74,8 +74,10 @@
 			<hr>
 			<div class="card-deck mt-4 mb-5">
 			<?php  
+				//var_dump($articles);
 				foreach ($articles as $key => $article) {
 					$title = $article->title;
+					$url= $article->title_url;
 					$photo = $article->photo;
 					$date = $article->dateAdd;
 					echo "<div class='card'>";
@@ -86,7 +88,7 @@
 					echo "<small>{$date}</small>";
 					echo "</a>";
 					echo "</div>";
-					echo "<a href='dossier.php' class='boton btn btn-dark text-center'>Continuar <i class='fas fa-angle-double-right'></i></a>";
+					echo "<a href= '$urlBase/article/$url' class='boton btn btn-dark text-center'>Continuar <i class='fas fa-angle-double-right'></i></a>";
 					echo "</div>";
 				}
 			?>

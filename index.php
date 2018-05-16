@@ -34,9 +34,12 @@
 
 	$app->get("/", "\Controller:loadHome");
 	$app->get("/categoria/{cod}", "\Controller:loadCategoryScreen");
+	$app->get("/article/{url}", "\Controller:loadArticleScreen");
 
 	//API
 	$app->get("/api/categorias", "\Controller:getCategoriesAPI");
 	$app->get("/api/categorias/{id}", "\Controller:getCategoriesAPIId");
+	$app->get("/api/articulos/{id}", "\Controller:getArticleAPIId");
+	$app->get("/api/articulos/", "\Controller:getArticlesAPIFilter");
 	$app->run();
 ?>

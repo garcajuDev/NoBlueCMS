@@ -42,14 +42,38 @@
 			$articlesList = $res->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'movie');
 			return $articlesList;
 		}
-		//Returns movie(articles) Objest array or
-		//a only one movie in array if receives a id as a paremeter
-		public function getArticles($id){
+		
+		public function getArticle($id){
 			$res = $this->_conect->query(
-				//Carmen SQL
+				"SELECT * FROM articles WHERE id LIKE '{$id}';"
 			);
-			$articlesList = $res->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'movie');
+			$article = $res->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'movie');
+			return $article;
+		}
+
+		public function getArticleByUrl($url){
+			$res = $this->_conect->query(
+				"SELECT * FROM articles WHERE title_url LIKE '%{$url}%';"
+			);
+			$article= $res->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'movie');
+			return $article;
+		}
+
+		public function getArticlesMin($min){
+			$res = $this->_conect->query(
+				"SELECT * FROM articles WHERE dateAdd > (SELECT dateAdd FROM ARTICLES WHERE dateAdd LIKE '{$min}';"//Revisar Carmen
+			);
+			$articlesList= $res->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'movie');
 			return $articlesList;
-		}		
+		}
+
+
+		public function getArticlesMax($max){
+			$res = $this->_conect->query(
+				"SELECT * FROM articles WHERE dateAdd < (SELECT dateAdd FROM articles WHERE dateAdd LIKE '{$max}');"//Revisar Carmen
+			);
+			$articlesList= $res->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'movie');
+			return $articlesList;
+		}				
 	}
 ?>
