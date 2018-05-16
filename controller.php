@@ -60,58 +60,41 @@
 		public function getArticleAPIId($request, $response, $args){
 			$id = $args['id'];
 			$res = $this->c->modelo->getArticle($id);
-			//var_dump($res);
-			foreach ($res as $key => $article) {
-				$result[$key]['id'] = $article->id;
-				$result[$key]['title'] = $article->title;
-				$result[$key]['title_url'] = $article->title_url;
-				$result[$key]['photo'] = $article->photo;
-				$result[$key]['dateAdd'] = $article->dateAdd;
-				$result[$key]['content_url'] = $article->content_url;
-				$result[$key]['username'] = $article->username;
-			}
-			$response = $response->withJson($result);
-			return $response;
+			$this->getArticlesJson($res);
 		}
 
 		public function getArticlesAPIFilter($request, $response, $args){
 			$minim = $request->getQueryParam('min');
 			$maxim = $request->getQueryParam('max');
 			$nArticles = $request->getQueryParam('n');
-			if ($minim != null) {
-				$res = $this->getArticlesAPIMin($min);
-				foreach ($res as $key => $article) {
-					$result[$key]['id'] = $article->id;
-					$result[$key]['title'] = $article->title;
-					$result[$key]['title_url'] = $article->title_url;
-					$result[$key]['photo'] = $article->photo;
-					$result[$key]['dateAdd'] = $article->dateAdd;
-					$result[$key]['content_url'] = $article->content_url;
-					$result[$key]['username'] = $article->username;
-				}
-				$response = $response->withJson($result);
-				return $response;
+			if ($minim != null && $maxim != null) {
+				echo "<hr>1<br>$minim -- $maxim";
+				$res = $this->getArticlesAPIBetween($minim, $maxim);
+				echo "<hr>2<br>";print_r($res); die();
+				$resultado = $this->getResult($res);
+			}elseif ($minim == null && $maxim != null) {
+				$minim = date("d-m-Y",1);
+				$res = $this->getArticlesAPIBetween($minim, $maxim);
+				$resultado = $this->getResult($res);		
+			}elseif ($minim != null && $maxim == null) {
+				$maxim = date("d-m-Y");
+				$res = $this->getArticlesAPIBetween($minim, $maxim);
+				$resultado = $this->getResult($res);
+			}elseif ($minim == "" && $maxim == "") {
+				$minim = date("d-m-Y",1);
+				$maxim = date("d-m-Y");
+				$res = $this->getArticlesAPIBetween($minim, $maxim);
+				$resultado = $this->getResult($res);
 			}
-			if ($maxim != null) {
-				$res = $this->getArticlesAPIMax($max);
-				foreach ($res as $key => $article) {
-					$result[$key]['id'] = $article->id;
-					$result[$key]['title'] = $article->title;
-					$result[$key]['title_url'] = $article->title_url;
-					$result[$key]['photo'] = $article->photo;
-					$result[$key]['dateAdd'] = $article->dateAdd;
-					$result[$key]['content_url'] = $article->content_url;
-					$result[$key]['username'] = $article->username;
-				}
-				$response = $response->withJson($result);
-				return $response;
+			if ($nArticles != null) {
+				$res = $this->getArticlesAPINArticles($nArticles);
+				$resultado = $this->getResult($res);
 			}
-			/*if ($nArticles != null) {
-				
-			}*/
+			$response = $response->withJson($resultado);
+			return $response;
 		}
 
-		public function getArticlesAPIMin($min){
+		/*public function getArticlesAPIMin($min){
 			$articles = $this->c->modelo->getArticlesMin($min);
 			return $articles;
 		}
@@ -119,6 +102,30 @@
 		public function getArticlesAPIMax($max){
 			$articles = $this->c->modelo->getArticlesMax($max);
 			return $articles;
+		}*/
+
+		public function getArticlesAPIBetween($min, $max){
+			$articles = $this->c->modelo->getArticlesBetween($min, $max);
+			return $articles;
+		}
+
+		public function getArticlesAPINArticles($number){
+			$articles = $this->c->modelo->getNArticles($number);
+			return $articles;
+		}
+
+		public function getResult($articles){
+			$result =[];
+			foreach ($articles as $key => $article) {
+					$result[$key]['id'] = $article->id;
+					$result[$key]['title'] = $article->title;
+					$result[$key]['title_url'] = $article->title_url;
+					$result[$key]['photo'] = $article->photo;
+					$result[$key]['dateAdd'] = $article->dateAdd;
+					$result[$key]['content_url'] = $article->content_url;
+					$result[$key]['username'] = $article->username;
+			}
+			return $result;
 		}
 	}
 ?>
