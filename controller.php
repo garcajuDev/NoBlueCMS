@@ -68,9 +68,7 @@
 			$maxim = $request->getQueryParam('max');
 			$nArticles = $request->getQueryParam('n');
 			if ($minim != null && $maxim != null) {
-				echo "<hr>1<br>$minim -- $maxim";
 				$res = $this->getArticlesAPIBetween($minim, $maxim);
-				echo "<hr>2<br>";print_r($res); die();
 				$resultado = $this->getResult($res);
 			}elseif ($minim == null && $maxim != null) {
 				$minim = date("d-m-Y",1);
@@ -80,7 +78,7 @@
 				$maxim = date("d-m-Y");
 				$res = $this->getArticlesAPIBetween($minim, $maxim);
 				$resultado = $this->getResult($res);
-			}elseif ($minim == "" && $maxim == "") {
+			}elseif ($minim == null && $maxim == null) {
 				$minim = date("d-m-Y",1);
 				$maxim = date("d-m-Y");
 				$res = $this->getArticlesAPIBetween($minim, $maxim);
@@ -93,16 +91,6 @@
 			$response = $response->withJson($resultado);
 			return $response;
 		}
-
-		/*public function getArticlesAPIMin($min){
-			$articles = $this->c->modelo->getArticlesMin($min);
-			return $articles;
-		}
-
-		public function getArticlesAPIMax($max){
-			$articles = $this->c->modelo->getArticlesMax($max);
-			return $articles;
-		}*/
 
 		public function getArticlesAPIBetween($min, $max){
 			$articles = $this->c->modelo->getArticlesBetween($min, $max);

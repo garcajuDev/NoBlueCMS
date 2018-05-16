@@ -59,23 +59,6 @@
 			return $article;
 		}
 
-		/*public function getArticlesMin($min){
-			$res = $this->_conect->query(
-				"SELECT * FROM articles WHERE dateAdd > (SELECT dateAdd FROM ARTICLES WHERE dateAdd LIKE '{$min}';"//Revisar Carmen
-			);
-			$articlesList= $res->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'movie');
-			return $articlesList;
-		}
-
-
-		public function getArticlesMax($max){
-			$res = $this->_conect->query(
-				"SELECT * FROM articles WHERE dateAdd < (SELECT dateAdd FROM articles WHERE dateAdd LIKE '{$max}');"//Revisar Carmen
-			);
-			$articlesList= $res->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'movie');
-			return $articlesList;
-		}*/	
-
 		public function getArticlesBetween($minus, $maximus){
 			$minus = date("Y-m-d",strtotime($minus));
 			$maximus = date("Y-m-d",strtotime($maximus));
@@ -87,7 +70,6 @@
 					where articles.dateAdd between '{$minus}' and  '{$maximus}';"
 			);
 			$articlesList= $res->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'movie');
-			//if(!$articlesList) return [new movie()];
 			return $articlesList;
 		}
 
