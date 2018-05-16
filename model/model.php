@@ -6,7 +6,7 @@
 		private $_conect;
 
 		public function __construct($dataConection){
-			$this->_conect = new PDO("mysql:host={$dataConection['host']}; dbname={$dataConection['dbname']}", $dataConection['user'], $dataConection['password']);
+			$this->_conect = new PDO("mysql:host={$dataConection['host']}; dbname={$dataConection['dbname']};charset=utf8", $dataConection['user'], $dataConection['password']);
 			$this->_conect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);		
 		}
 
@@ -63,19 +63,22 @@
 			$minus = date("Y-m-d",strtotime($minus));
 			$maximus = date("Y-m-d",strtotime($maximus));
 			$res = $this->_conect->query(
-				"SELECT articles.id, categories.name,title,articles.photo,DATE_FORMAT(articles.dateAdd,'%d-%m-%Y') AS dateAdd, content from articles 
+				"SELECT articles.id,articles.title,articles.photo,articles.title_url,DATE_FORMAT(articles.dateAdd,'%d-%m-%Y') AS dateAdd, categories.id AS idCategory from articles 
 					join in_category on (articles.id = in_category.article_id) 
 					join categories on (in_category.category_id = categories.id) 
 					left join in_content on (articles.id=in_content.article_id) 
 					where articles.dateAdd between '{$minus}' and  '{$maximus}';"
 			);
 			$articlesList= $res->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'movie');
+
 			return $articlesList;
 		}
 
 		public function getNArticles($num){
 			$res = $this->_conect->query(
-				"SELECT * FROM articles WHERE dateAdd < (SELECT dateAdd FROM articles WHERE dateAdd LIKE '{$max}');"//Revisar Carmen
+				"SELECT * , category_id as idCategory from articles 
+				join in_category on (articles.id = in_category.article_id) 
+				ORDER BY id DESC LIMIT {$num};"
 			);
 			$articlesList= $res->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'movie');
 			return $articlesList;

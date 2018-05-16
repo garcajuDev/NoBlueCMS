@@ -84,7 +84,7 @@
 				$res = $this->getArticlesAPIBetween($minim, $maxim);
 				$resultado = $this->getResult($res);
 			}
-			if ($nArticles != null) {
+			if ($nArticles != null) {	
 				$res = $this->getArticlesAPINArticles($nArticles);
 				$resultado = $this->getResult($res);
 			}
@@ -112,6 +112,7 @@
 					$result[$key]['dateAdd'] = $article->dateAdd;
 					$result[$key]['content_url'] = $article->content_url;
 					$result[$key]['username'] = $article->username;
+					$result[$key]['hateoas'] = "{$this->c->get('request')->getUri()->getScheme()}"."://"."{$this->c->get('request')->getUri()->getHost()}{$this->c->get('request')->getUri()->getBasePath()}/api/categorias/{$article->idCategory}";
 			}
 			return $result;
 		}
