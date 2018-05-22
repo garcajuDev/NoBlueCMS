@@ -1,4 +1,4 @@
-create database nobluecms2;
+create database nobluecms2 character set utf8 COLLATE utf8_general_ci;
 
 create table users (
 	username varchar(20) not null primary key,
@@ -54,12 +54,12 @@ insert into users (username, hash, publicname) values
 	('serrod', null, 'Sergio Rodriguez'); 
 
 insert into articles(title, title_url, billboard, dateAdd, content_id, username) values
-	('El bueno, el feo y el malo','elbuenoelfeoyelmalo','/view/photo/home/art_mov1.png','2018-05-01',1,'serrod'),
-	('La Momia 2','lamomia2','/view/photo/home/art_mov2.png','2018-05-03',2,'garcaju'),
-	('Family Man','familyman','/view/photo/home/art_mov3.png','2018-05-09',3,'carver'),
-	('El Patriota','elpatriota','/view/photo/home/art_mov4.png','2018-05-15',4,'serrod'),
-	('Fast & Furious 8','fast8','/view/photo/home/art_mov5.png','2018-05-16',5,'garcaju'),
-	('Avengers: Infinity War','avengersinfinitywar','/view/photo/home/art_mov6.png','2018-05-17',6,'garcaju');
+	('El bueno, el feo y el malo','elbuenoelfeoyelmalo','./view/photo/billboard/art_mov1.png','2018-05-01',1,'serrod'),
+	('La Momia 2','lamomia2','./view/photo/billboard/art_mov2.png','2018-05-03',2,'garcaju'),
+	('Family Man','familyman','./view/photo/billboard/art_mov3.png','2018-05-09',3,'carver'),
+	('El Patriota','elpatriota','./view/photo/billboard/art_mov4.png','2018-05-15',4,'serrod'),
+	('Fast & Furious 8','fast8','./view/photo/billboard/art_mov5.png','2018-05-16',5,'garcaju'),
+	('Avengers: Infinity War','avengersinfinitywar','./view/photo/billboard/art_mov6.png','2018-05-17',6,'garcaju');
 
 insert into in_content (photo1, photo2, fichaTec, firstPart, secondPart) values
 	('./view/photo/articles/art_photo1.png','./view/photo/articles/art_photo2.png','Il buono, il brutto, il cattivo, 1966, Italia, Clint Eastwood, Lee Van Cleef, Eli Wallach, Aldo Giuffrè, Rada Rassimov, Mario Brega, Luigi Pistilli, Aldo Sambrell, Enzo Petito, Claudio Scarchilli, Al Mulock, John Bartha, Livio Lorenzon, Antonio Molino Rojo, Sandro Scarchilli, Chelo Alonso','Un pistolero a sueldo conocido como Sentencia (Lee van Cleef), llega a un pequeño pueblo a hacer un trabajo. De casualidad se entera sobre la existencia de una caja repleta de dólares, de la que sólo un tal Bill Carlson conoce su paradero. Por otro lado están Rubio (C. Eastwood) y Tuco (Eli Wallach), un solitario y un delincuente que se las apañan para ir estafando de pueblo en pueblo cobrando recompensas por nada, mientras tratan de soportarse el uno al otro como bien pueden.',' En una de sus "disputas" se encuentran fortuitamente con un agonizante Bill Carlson, que les revela - a cada uno una parte de la dirección - donde está la caja. Comienza entonces una carrera entre los tres por hacerse con el dinero, en la que nadie puede fiarse de nadie.'),

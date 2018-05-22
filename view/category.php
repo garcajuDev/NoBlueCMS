@@ -78,7 +78,7 @@
 				foreach ($articles as $key => $article) {
 					$title = $article->title;
 					$url= $article->title_url;
-					$photo = $article->photo;
+					$photo = $article->billboard;
 					$date = $article->dateAdd;
 					echo "<div class='card'>";
 					echo "<img src='{$urlBase}{$photo}' class='card-img-top'></img>";

@@ -24,7 +24,7 @@
 	$c['modelo'] = function(){//Datos de la conexión
 		$info = [
 			'host' => 'localhost',
-			'dbname' => 'nobluecms',
+			'dbname' => 'nobluecms2',
 			'user' => 'root',
 			'password' => ""
 		];

@@ -115,7 +115,7 @@
 					foreach ($articles as $article) {
 					  	$title = $article->title;
 					  	$fecha = $article->dateAdd;
-					  	$photo = $article->photo;
+					  	$photo = $article->billboard;
 
 					  	echo "<div class='col-lg-3'>";
 						echo "<img class='card-img-top mb-4 img-thumbnail' src='{$urlBase}{$photo}' alt='Card image cap'>";

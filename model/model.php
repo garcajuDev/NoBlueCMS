@@ -37,7 +37,7 @@
 
 		public function getArticlesByIdCategory($id){
 			$res = $this->_conect->query(
-				"SELECT articles.id, articles.title, articles.title_url, articles.photo, articles.dateAdd, articles.content_id, articles.username FROM `articles` JOIN in_category ON (articles.id = article_id) WHERE category_id = {$id};"
+				"SELECT articles.id, articles.title, articles.title_url, articles.billboard, articles.dateAdd, articles.content_id, articles.username FROM `articles` JOIN in_category ON (articles.id = article_id) WHERE category_id = {$id};"
 			);
 			$articlesList = $res->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'movie');
 			return $articlesList;
@@ -63,7 +63,7 @@
 			$minus = date("Y-m-d",strtotime($minus));
 			$maximus = date("Y-m-d",strtotime($maximus));
 			$res = $this->_conect->query(
-				"SELECT articles.id,articles.title,articles.photo,articles.title_url,DATE_FORMAT(articles.dateAdd,'%d-%m-%Y') AS dateAdd, categories.id AS idCategory from articles 
+				"SELECT articles.id,articles.title,articles.billboard,articles.title_url,DATE_FORMAT(articles.dateAdd,'%d-%m-%Y') AS dateAdd, categories.id AS idCategory from articles 
 					join in_category on (articles.id = in_category.article_id) 
 					join categories on (in_category.category_id = categories.id) 
 					left join in_content on (articles.id=in_content.article_id) 
