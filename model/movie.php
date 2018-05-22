@@ -7,6 +7,7 @@
 	  	private $dateAdd;
 	  	private $content_id;
 	  	private $username;
+	  	private $category_id;
 
 	  	public function __get($property){
 				if(property_exists($this, $property)) {

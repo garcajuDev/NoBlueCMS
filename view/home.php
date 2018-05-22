@@ -83,7 +83,6 @@
 							echo "<div class='card-body'>";
 							echo "<h4 class='h4_categoria'>{$name}</h4>";
 							echo "<p>{$description}</p>";
-							echo "<hr>";
 							echo "</div>";
 
 							echo "<a href='{$urlBase}/categoria/{$id}' class='boton btn text-center btn-sm text-white'>Continuar <i class='fas fa-angle-double-right'></i></a>";
