@@ -3,11 +3,15 @@
 	  	private $id;
 	  	private $title;
 	  	private $title_url;
-	  	private $photo;
+	  	private $billboard;
 	  	private $dateAdd;
 	  	private $content_id;
 	  	private $username;
 	  	private $category_id;
+	  	private $photo1;
+	  	private $photo2;
+	  	private $firstPart;
+	  	private $secondPart;
 
 	  	public function __get($property){
 				if(property_exists($this, $property)) {

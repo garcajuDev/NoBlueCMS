@@ -53,7 +53,10 @@
 
 		public function getArticleByUrl($url){
 			$res = $this->_conect->query(
-				"SELECT * ,category_id FROM articles join in_category on (articles.id = in_category.article_id) WHERE title_url LIKE '%{$url}%';"
+				"SELECT articles.id, articles.title,articles.title_url,articles.billboard,articles.dateAdd,articles.username, in_category.category_id, in_content.photo1, in_content.photo2, in_content.fichaTec, in_content.firstPart, in_content.secondPart FROM articles 
+					join in_category on (articles.id = in_category.article_id) 
+					join in_content on (articles.content_id = in_content.id)
+					WHERE articles.title_url LIKE '%{$url}%';"
 			);
 			$article= $res->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'movie');
 			return $article;

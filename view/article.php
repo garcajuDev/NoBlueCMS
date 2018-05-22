@@ -44,16 +44,59 @@
     		</div>
   		</div>
 	</div>
+
+		<div class="nav justify-content-center" style="background-color:#004080; margin: 10px; border-radius: 5px;">
+		<ul class="top_nav nav justify-content-center">
+			<li class="nav-item">
+				<a class="nav-link active" href="<?php echo "{$urlBase}/";?>">Home</a>
+			</li>
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categorias</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					   	<?php  
+					       	foreach ($founded as $key => $cat) {
+					       		$nameCat = $cat->name;
+					       		$id = $cat->id;
+					       		echo "<a class='dropdown-item' href='{$urlBase}/categoria/{$id}'>Películas de {$nameCat}</a>";
+					       	}
+					    ?>
+						<div class="dropdown-divider"></div>
+						    <a class="dropdown-item" href="#">Seguir buscando...</a>	        
+						</div>
+      		</li>
+		</ul>
+	</div>
 	<?php 
 		foreach ($movie as $key => $pelicula) {
+			$id = $pelicula->id;
 			$title = $pelicula->title;
 			$url = $pelicula->title_url;
-			$photo = $pelicula->photo;
-
-			echo "$title<br>";
-			echo "$url<br>";
-			echo "$photo<br>";
+			$billboard = $pelicula->billboard;
+			$fichaTecnica = explode(",",$pelicula->fichaTec);
+			$photo1 = $pelicula->photo1;
+			$photo2 = $pelicula->photo2;
+			$intro = $pelicula->firstPart;
+			$final = $pelicula->secondPart;
 		}
 	?>
+	<div class="container">
+		<div class="row mt-5">
+				<div class="col-lg-12"><img src="<?php echo $urlBase.$billboard;?>" class="img-thumbnail img_dossier">
+					<h3><?php echo "$title"; ?></h3>
+					<h4 class="h4_dossier"></h4>
+					<?php foreach ($fichaTecnica as $dato){
+						echo "<li>{$dato}</li>";
+					} ?>
+					<br>
+					<h3>Sipnosis</h3>
+					<?php 
+						echo "<p>$intro</p>";
+						echo "<img src = '{$urlBase}{$photo1}' class='dossier rounded float-left mt-3 mb-4'></img>";
+						echo "<img src = '{$urlBase}{$photo2}' class='dossier rounded mb-4 mt-3'></img>";
+						echo "<p>$final</p>";
+					?>
+				</div>
+		</div>
+	</div>
 </body>
 </html>

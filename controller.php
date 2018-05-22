@@ -26,7 +26,9 @@
 		}
 
 		public function loadArticleScreen($request, $response, $args){
+			$res = $this->c->modelo->getCategories();
 			$url = $args['url'];
+			$result['founded'] = $res;
 			$result['movie'] = $this->c->modelo->getArticleByUrl($url);
 			$response = $this->c->view->render($response, "article.php", $result);
 			return $response;
