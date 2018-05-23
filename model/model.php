@@ -15,15 +15,31 @@
 			$res = $this->_conect->query(
 				"SELECT id, name, photo, description FROM categories;"
 			);
-			$categoriesList = $res->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'genre');
+			$categoriesList = $res->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Genre');
 			return $categoriesList;
+		}
+
+		public function getCategoriesAPI(){
+			$res = $this->_conect->query(
+				"SELECT id, name, photo, description FROM categories;"
+			);
+			$categoriesList = $res->fetchAll(PDO::FETCH_ASSOC);
+			return $categoriesList;
+		}
+
+		public function getArticlesAPI(){
+			$res = $this->_conect->query(
+				"SELECT * FROM articles;"
+			);
+			$articlesList = $res->fetchAll(PDO::FETCH_ASSOC);
+			return $articlesList;
 		}
 
 		public function getCategoriesId($id){
 			$res = $this->_conect->query(
 				"SELECT id, name, photo, description FROM categories WHERE id = {$id};"
 			);
-			$category = $res->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'genre');
+			$category = $res->fetch(PDO::FETCH_ASSOC);
 			return $category;
 		}
 
@@ -31,7 +47,7 @@
 			$res = $this->_conect->query(
 				"SELECT * FROM articles ORDER BY id DESC LIMIT 3;"
 			);
-			$articlesList = $res->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'movie');
+			$articlesList = $res->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Movie');
 			return $articlesList;
 		}
 
@@ -39,15 +55,15 @@
 			$res = $this->_conect->query(
 				"SELECT articles.id, articles.title, articles.title_url, articles.billboard, articles.dateAdd, articles.content_id, articles.username FROM `articles` JOIN in_category ON (articles.id = article_id) WHERE category_id = {$id};"
 			);
-			$articlesList = $res->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'movie');
+			$articlesList = $res->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Movie');
 			return $articlesList;
 		}
 		
 		public function getArticle($id){
 			$res = $this->_conect->query(
-				"SELECT * FROM articles WHERE id LIKE '{$id}';"
+				"SELECT * FROM articles WHERE id = {$id};"
 			);
-			$article = $res->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'movie');
+			$article = $res->fetch(PDO::FETCH_ASSOC);
 			return $article;
 		}
 
@@ -85,6 +101,22 @@
 			);
 			$articlesList= $res->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'movie');
 			return $articlesList;
-		}			
+		}		
+
+		public function getHateoasQueryCategory($id){
+			$res = $this->_conect->query(
+				"SELECT article_id FROM in_category WHERE category_id = '{$id}';"
+			);
+			$articlesIdList = $res->fetchAll(PDO::FETCH_ASSOC);
+			return $articlesIdList;
+		}	
+
+		public function getHateoasQueryArticle($id){
+			$res = $this->_conect->query(
+				"SELECT category_id FROM in_category WHERE article_id = '{$id}';"
+			);
+			$categoryIdList = $res->fetchAll(PDO::FETCH_ASSOC);
+			return $categoryIdList;
+		}	
 	}
 ?>

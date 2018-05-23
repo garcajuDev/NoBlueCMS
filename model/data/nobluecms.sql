@@ -77,3 +77,5 @@ insert into in_category (article_id, category_id) values
 	(5,1),
 	(6,2);
 
+/*INSERT INTO username(userid,password) values ('test', SHA2('test',256));*/
+

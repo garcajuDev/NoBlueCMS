@@ -35,12 +35,13 @@
 		}
 
 		public function getCategoriesAPI($request, $response, $args){
-			$res = $this->c->modelo->getCategories();
+			$res = $this->c->modelo->getCategoriesAPI();
+			
 			foreach ($res as $key => $category) {
-				$result[$key]['id'] = $category->id;
-				$result[$key]['name'] = $category->name;
-				$result[$key]['photo'] = $category->photo;
-				$result[$key]['description'] = $category->description;
+				$result[$key] = $category;
+				$id = $category['id'];
+				$hateoas = $this->getHateoasCategories($id);
+				$result[$key]['links']=$hateoas;
 			}
 			$response = $response->withJson($result);
 			return $response;
@@ -49,20 +50,19 @@
 		public function getCategoriesAPIId($request, $response, $args){
 			$id = $args['id'];
 			$res = $this->c->modelo->getCategoriesId($id);
-			foreach ($res as $key => $category) {
-				$result[$key]['id'] = $category->id;
-				$result[$key]['name'] = $category->name;
-				$result[$key]['photo'] = $category->photo;
-				$result[$key]['description'] = $category->description;
-			}
-			$response = $response->withJson($result);
+			$hateoas = $this->getHateoasCategories($id);
+			$res['links']=$hateoas;
+			$response = $response->withJson($res);
 			return $response;
 		}
 
 		public function getArticleAPIId($request, $response, $args){
 			$id = $args['id'];
 			$res = $this->c->modelo->getArticle($id);
-			$this->getArticlesJson($res);
+			$hateoas = $this->getHateoasArticle($id);
+			$res['links']=$hateoas;
+			$response = $response->withJson($res);
+			return $response; 
 		}
 
 		public function getArticlesAPIFilter($request, $response, $args){
@@ -85,6 +85,9 @@
 				$maxim = date("d-m-Y");
 				$res = $this->getArticlesAPIBetween($minim, $maxim);
 				$resultado = $this->getResult($res);
+			}elseif (count($args)==0){
+				$res = $this->getArticlesList();
+				$resultado = $this->getResult($res); 
 			}
 			if ($nArticles != null) {	
 				$res = $this->getArticlesAPINArticles($nArticles);
@@ -92,6 +95,11 @@
 			}
 			$response = $response->withJson($resultado);
 			return $response;
+		}
+
+		public function getArticlesList(){
+			$articlesList = $this->c->modelo->getArticlesAPI();
+			return $articlesList;
 		}
 
 		public function getArticlesAPIBetween($min, $max){
@@ -110,13 +118,27 @@
 					$result[$key]['id'] = $article->id;
 					$result[$key]['title'] = $article->title;
 					$result[$key]['title_url'] = $article->title_url;
-					$result[$key]['photo'] = $article->photo;
+					$result[$key]['photo'] = $article->billboard;
 					$result[$key]['dateAdd'] = $article->dateAdd;
-					$result[$key]['content_url'] = $article->content_url;
-					$result[$key]['username'] = $article->username;
-					$result[$key]['hateoas'] = "{$this->c->get('request')->getUri()->getScheme()}"."://"."{$this->c->get('request')->getUri()->getHost()}{$this->c->get('request')->getUri()->getBasePath()}/api/categorias/{$article->idCategory}";
+					$result[$key]['links'] = "{$this->c->get('request')->getUri()->getScheme()}"."://"."{$this->c->get('request')->getUri()->getHost()}{$this->c->get('request')->getUri()->getBasePath()}/api/categorias/{$article->idCategory}";
 			}
 			return $result;
+		}
+
+		public function getHateoasCategories($id){
+			$rel=$this->c->modelo->getHateoasQueryCategory($id);
+			foreach ($rel as $id_articles) {
+				$respon[]="{$this->c->get('request')->getUri()->getScheme()}"."://"."{$this->c->get('request')->getUri()->getHost()}{$this->c->get('request')->getUri()->getBasePath()}/api/articulos/{$id_articles['article_id']}";
+			}
+			return $respon;
+		}
+
+		public function getHateoasArticle($id){
+			$rel=$this->c->modelo->getHateoasQueryArticle($id);
+			foreach ($rel as $id_category) {
+				$respon[]="{$this->c->get('request')->getUri()->getScheme()}"."://"."{$this->c->get('request')->getUri()->getHost()}{$this->c->get('request')->getUri()->getBasePath()}/api/categorias/{$id_category['category_id']}";
+			}
+			return $respon;
 		}
 	}
 ?>

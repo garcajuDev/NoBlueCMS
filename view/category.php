@@ -20,13 +20,13 @@
 <body>
 	<div class="container-fluid">
 
-		<div class="header text-center text-white" style="margin-bottom: 10px;"></div>
-			<nav aria-label="breadcrumb">
+		<div class="header text-center text-white"></div>
+			<nav aria-label="breadcrumb" style="margin: 10px 0 10px 0;">
   				<ol class="breadcrumb">
     				<li class="breadcrumb-item"><a href="../">Home</a></li>
     				<li class="breadcrumb-item active" aria-current="page">Categorias</li>
   				</ol>
-		</nav>
+			</nav>
 	</div>
 
 	<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
@@ -94,5 +94,14 @@
 			?>
 		</div>
 	</div>
+</div>
+	<footer class="footer">
+			<ul class="footer_list mt-5 ">
+				<li><a href="#">Web Pública -</a></li>
+				<li><a href="#">API REST -</a></li>
+				<li><a href="zonaprivada.php">Zona Privada -</a></li>
+				<li><a href="#">BlueCMS</a></li>
+			</ul>
+		</footer>
 </body>
 </html>

@@ -20,8 +20,8 @@
 <body>
 	<div class="container-fluid">
 
-		<div class="header text-center text-white" style="margin-top: 10px;"></div>
-			<nav aria-label="breadcrumb">
+		<div class="header text-center text-white" ></div>
+			<nav aria-label="breadcrumb" style="margin: 10px 0 10px 0;">
   				<ol class="breadcrumb">
     				<li class="breadcrumb-item active" aria-current="page">Home</li>
   				</ol>
@@ -93,16 +93,6 @@
 			</div>
 		</div>
 		<hr>
-	</div>
-
-	<!--<div class="tarjeta card">
-					    <img class="card-img-top" src="img/accion.jpg" alt="Card image cap">
-					    <div class="card-body">
-					      <h4 class="h4_categorias">Acción y Aventuras</h4>
-					      <hr>
-					    </div>
-					    <a href="accion.php" class="boton btn text-center btn-sm text-white">Continuar <i class="fas fa-angle-double-right"></i></a>
-					  </div>-->
 
 	<section class="main_bottom mt-5" style="background-color:  #ccd1d1; padding-top: 15px;">
 		<div class="container">
@@ -129,8 +119,7 @@
 	</section>
 
 			<hr>
-
-	</div>
+			
 		<footer class="footer">
 			<ul class="footer_list mt-5 ">
 				<li><a href="#">Web Pública -</a></li>

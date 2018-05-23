@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,13 +19,14 @@
 </head>
 <body>
 	<div class="container-fluid">
-		<div class="header text-center text-white" style="margin-bottom: 10px;"></div>
-			<nav aria-label="breadcrumb">
+		<div class="header text-center text-white"></div>
+			<nav aria-label="breadcrumb" style="margin: 10px 0 10px 0;">
   				<ol class="breadcrumb">
     				<li class="breadcrumb-item"><a href="../">Home</a></li>
     				<li class="breadcrumb-item"><a href="<?php echo $urlBase;?>/categoria/<?php echo "{$movie[0]->category_id}";?>">Categorias</a></li>
+    				<li class="breadcrumb-item"><?php echo "{$movie[0]->title}"?></li>
   				</ol>
-		</nav>
+			</nav>
 	</div>
 
 	<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
@@ -45,14 +46,14 @@
   		</div>
 	</div>
 
-		<div class="nav justify-content-center" style="background-color:#004080; margin: 10px; border-radius: 5px;">
+	<div class="nav justify-content-center" style="background-color:#004080; margin: 10px; border-radius: 5px;">
 		<ul class="top_nav nav justify-content-center">
 			<li class="nav-item">
 				<a class="nav-link active" href="<?php echo "{$urlBase}/";?>">Home</a>
 			</li>
 			<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categorias</a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 					   	<?php  
 					       	foreach ($founded as $key => $cat) {
 					       		$nameCat = $cat->name;
@@ -60,9 +61,9 @@
 					       		echo "<a class='dropdown-item' href='{$urlBase}/categoria/{$id}'>Películas de {$nameCat}</a>";
 					       	}
 					    ?>
-						<div class="dropdown-divider"></div>
-						    <a class="dropdown-item" href="#">Seguir buscando...</a>	        
-						</div>
+				<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="#">Seguir buscando...</a>	        
+				</div>
       		</li>
 		</ul>
 	</div>
@@ -98,5 +99,13 @@
 				</div>
 		</div>
 	</div>
+		<footer class="footer">
+				<ul class="footer_list mt-5 ">
+					<li><a href="#">Web Pública -</a></li>
+					<li><a href="#">API REST -</a></li>
+					<li><a href="zonaprivada.php">Zona Privada -</a></li>
+					<li><a href="#">BlueCMS</a></li>
+				</ul>
+		</footer>
 </body>
 </html>
