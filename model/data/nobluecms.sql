@@ -49,9 +49,9 @@ insert into categories(name, photo, description, name_url) values
 	('Romance','./view/photo/categories/cat_romantic.jpg','El cine romántico es un género cinematográfico que se caracteriza por retratar argumentos construidos de eventos y personajes relacionados con la expresión del amor y las relaciones románticas. El cine romántico se centra en la representación de una historia amorosa de dos participantes','romantic');
 
 insert into users (username, hash, publicname) values
-	('carver', null, 'Carmen Vera'),
-	('garcaju', null, 'Juan Garcia'),
-	('serrod', null, 'Sergio Rodriguez'); 
+	('carver', SHA2('carver',256), 'Carmen Vera'),
+	('garcaju', SHA2('garcaju',256), 'Juan Garcia'),
+	('serrod', SHA2('serrod',256), 'Sergio Rodriguez'); 
 
 insert into articles(title, title_url, billboard, dateAdd, content_id, username) values
 	('El bueno, el feo y el malo','elbuenoelfeoyelmalo','./view/photo/billboard/art_mov1.png','2018-05-01',1,'serrod'),

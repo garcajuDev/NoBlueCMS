@@ -170,15 +170,6 @@ footer{
 
 }
 
-
-/*.header{
-	background: #b3d1ff;
-    /* background: url(img/header6.jpg); */
-/*	height: 250px;
-	padding-top: 40px;
-	background-position: center;
-}*/
-
 .top_nav a{
 	color: white;
 	text-transform: uppercase;
@@ -196,7 +187,6 @@ footer{
 	border-radius: 0px;
 	font-weight: 400;
 	letter-spacing: 1px;
-	/* padding: 5px 30px; */
 	text-align: center;
 	transition: 0.9;
 	background: #004080;
@@ -213,7 +203,6 @@ footer{
 	border-radius: 0px;
 	font-weight: 400;
 	letter-spacing: 1px;
-	/* padding: 5px 30px; */
 	text-align: center;
 	transition: 0.9;
 	background: #e68a00;
@@ -229,7 +218,6 @@ footer{
 	border-radius: 0px;
 	font-weight: 400;
 	letter-spacing: 1px;
-	/* padding: 5px 30px; */
 	text-align: center;
 	transition: 0.9;
 	background: firebrick;
@@ -319,9 +307,6 @@ img{
 	width: 430px;
 	background-color: #f9f2ec;
 	color: black;
-	/* border: 0px;
-	border-bottom: 1px solid grey; */
-
 }
 
 .categoryList{
@@ -347,21 +332,10 @@ img{
 	font-size: 1em;
 }
 
-/* 
-
-.table-hover tr{
-	font-family: 'IBM Plex Mono', monospace;
-	color: #404040;
-	font-size: 1rem;
+.pelis{
+	width: 347px;
+	background-color: #FFF;
 }
-
-.table-hover form th{
-	font-family: 'Montserrat', sans-serif;
-	color: #404040;
-	font-size: 0.9rem;
-	font-weight: 800;
-}
-*/
 
 
 

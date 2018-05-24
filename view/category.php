@@ -72,7 +72,6 @@
 			<hr>
 			<div class="card-deck mt-4 mb-5">
 			<?php  
-				//var_dump($articles);
 				foreach ($articles as $key => $article) {
 					$title = $article->title;
 					$url= $article->title_url;
