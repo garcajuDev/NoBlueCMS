@@ -108,8 +108,8 @@
 		<footer class="footer">
 				<ul class="footer_list mt-5 ">
 					<li><a href="#">Web Pública -</a></li>
-					<li><a href="#">API REST -</a></li>
-					<li><a href="zonaprivada.php">Zona Privada -</a></li>
+					<li><a href="<?php echo $urlBase; ?>/view/apiDOC.html">API REST -</a></li>
+					<li><a href="#">Zona Privada -</a></li>
 					<li><a href="#">BlueCMS</a></li>
 				</ul>
 		</footer>
