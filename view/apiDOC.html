@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+  <style>
+          img{
+            border-radius: 10px;
+          }
+          aside{
+            width: 25%;
+          }
+          section{
+            padding-left: 15px;
+            width: 75%;
+          }
+          pre{
+            padding-left: 30px
+          }
+          #nav-links{
+            display: flex;
+            flex-flow: row wrap;
+          }
+          #nav-links a{
+            margin-right: 15px;
+          }
+          .content{
+            display: flex;
+            flex-flow: row wrap;
+          }
+         
+          .example{
+            margin-top: 10px;
+            text-align: center; 
+          }
+  </style>
+
+
+
+	<title> API Documentation</title>
+</head>
+<body>
+ 
+	<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+  		<img src="icon-nav.png" alt="IconoBootstrap" width="48" height="48">
+  		<h2 NoBlueCMS -- API Documentation</h2>
+  		<div id="nav-links">
+  			<a href="#list-item-1">Introduction</a>
+  			<a href="#list-item-2">Using this API</a>
+  		</div>
+  	</nav>
+  	<div class="jumbotron jumbotron-fluid">
+  		<div class="container">
+    		<h1 class="display-4"> NoBlueCMS -- API Documentation</h1>
+    		<p class="lead">Api Doc provides your system with a movie management system, with categories, content and authorized content management. Presents an intuitive and light but practical and effective management.</p>
+  		</div>
+    </div>
+	   <div class="container">
+      <div class="content">
+        <aside>
+          <div id="list-example" class="list-group" id="links">
+            <a class="list-group-item list-group-item-action" href="#list-item-1">Getting Started</a>
+            <a class="list-group-item list-group-item-action" href="#list-item-2">All Catetories</a>
+            <a class="list-group-item list-group-item-action" href="#list-item-3">Category by ID</a>
+            <a class="list-group-item list-group-item-action" href="#list-item-4">All Articles by data selection</a>
+            <a class="list-group-item list-group-item-action" href="#list-item-5">Article by ID</a>
+            <a class="list-group-item list-group-item-action" href="#list-item-6">API DOC</a>
+            <a class="list-group-item list-group-item-action" href="#list-item-7">Otherwise error </a>
+          </div>
+        </aside>
+        <section>
+           <div data-spy="scroll" data-target="#list-example" data-offset="0" class="scrollspy-example" id="info">
+            <h4 id="list-item-1">Getting Started</h4>
+              <p>Manage your web service requests with the four basic methods of the standard <a href="https://en.wikipedia.org/wiki/Representational_state_transfer">Restful</a> get, post, put and delete (currently, only implemented GET method).</p>
+              <p> With the standard anotation system  <a href="https://en.wikipedia.org/wiki/HATEOAS">HATEOAS</a> incorporated in each of its resources, you can access not only the resource itself but any of the API that is related to it.</p>
+              <p> This tool is developed as an academic and learning use. The objective is not a commercial use. </p>
+              <p> Please be patient with its execution and the possible errors and incidents that may appear. </p>
+              <p> Thanks for your understanding and patience. </p>
+            <h4 id="list-item-2">Get category list</h4>
+            This function provides the complete list of existing categories of classification of the movies in the database through the <code> get () </code> method. The word <code>server</code> in the url shown below is based on the hosting where the API is located.
+            <p class="example"><code>http://server/api/categorias</code></p> 
+            <p>Result: (this sample is for 3 categories)</p><br>
+         <pre>
+              [
+               {
+               "id": "1",
+                "name": "Accion",
+                "photo": "./view/photo/categories/cat_action.jpg",
+                "description": "El llamado cine de acción es un género cinematográfico en el que prima la espectacularidad de las imágenes por medio de efectos especiales de estilo \"clásicos\". Esto es: explosiones y combates con/sin armas cuerpo a cuerpo y persecuciones. Todo muy \"físico\" - y sin apenas CGI - dejando al margen cualquier otra consideración. ",
+                "links": [
+                   "http://localhost/NoBlueCMS/api/articulos/2",
+                   "http://localhost/NoBlueCMS/api/articulos/4",
+                   "http://localhost/NoBlueCMS/api/articulos/5"
+                         ]
+              },
+              {
+               "id": "2",
+               "name": "Ciencia Ficcion",
+               "photo": "./view/photo/categories/cat_syfy.jpg",
+                "description": "El cine de ciencia ficción es un género cinematográfico que utiliza representaciones especulativas basadas en la ciencia de fenómenos imaginarios como extraterrestres, planetas alienígenas y viajes en el tiempo, a menudo junto con elementos tecnológicos como naves espaciales futuristas, robots y otras tecnologías.",
+                "links": [
+                  "http://localhost/NoBlueCMS/api/articulos/6"
+                         ]
+              },
+              {
+                    "id": "3",
+                    "name": "Western",
+                    "photo": "./view/photo/categories/cat_western.jpg",
+                    "description": "El wéstern es un género cinematográfico típico del cine estadounidense que se ambienta en el Viejo Oeste estadounidense. La palabra western, originariamente un adjetivo derivado de west («oeste», en inglés), se sustantivó para hacer referencia fundamentalmente a obras cinematográficas",
+                    "links": [
+                      "http://localhost/NoBlueCMS/api/articulos/1"
+                    ]
+                  }
+                ]
+        </pre>
+            <h4 id="list-item-3">Getting Category by ID</h4>
+              <p>To get the information of a specific category, just add your id number of category identification after <code>/api/categorias/</code>. This option does not support filters or search conditions.<br>
+              Access with the <code> get () </code> method.</p>
+              <p class="example"><code>http://server/api/categorias/3</code>.</p>
+            
+              <pre>
+                {
+                "id": "3",
+                "name": "Western",
+                "photo": "./view/photo/categories/cat_western.jpg",
+                "description": "El wéstern es un género cinematográfico típico del cine estadounidense que se ambienta en el Viejo Oeste estadounidense. La palabra western, originariamente un adjetivo derivado de west («oeste», en inglés), se sustantivó para hacer referencia fundamentalmente a obras cinematográficas",
+                "links": [
+                  "http://localhost/NoBlueCMS/api/articulos/1"
+                ]
+                }
+              </pre>
+            <h4 id="list-item-4">Get articles list</h4>
+              <p>Get the list of existing movies in the database. We can include different selection criteria indicating the 'start date' of the search, the 'end date' of the search or a certain 'number' of last articles add in the database.All options are accessible through the link <code>/api/articulos/</code> in the url.<br>
+                Access with the <code> get () </code> method.</p>
+              <p> To make filters it will be necessary to indicate: <br> <br>
+                  <code>/api/articulos/?min="dd-mm-yyyy"</code>  List movies added from the date indicated </p>
+               <p class="example"><code>http://server/api/articulos/?min="10-05-2018"</code></p>
+  
+               <p><code>/api/articulos/?max="dd-mm-yyyy"</code>  List movies added after the date indicated </p>
+              <p class="example"><code>http://server/api/articulos/?max="19-05-2018"</code></p>
+
+              <p><code>/api/articulos/?min="dd-mm-yyyy"&amp;max="dd-mm-yyyy"</code> List movies added between the dates indicated  </p>
+              <p class="example"><code>http://server/api/articulos/?min="10-05-2018"&amp;max="19-05-2018"</code></p>
+
+                  <code>/api/articulos/?n="n"</code>  List the 'n' latest movies add in the database
+
+              </p>
+              <p class="example"><code>http://server/api/articulos/?n="5"</code></p>
+
+              <p class="example"><code>http://server/api/articulos/</code></p>
+              <p>Result: (this sample is for 3 articles)</p><br>
+              <pre>
+                [
+                  {
+                      "id": "1",
+                      "title": "El bueno, el feo y el malo",
+                      "title_url": "elbuenoelfeoyelmalo",
+                      "photo": "./view/photo/billboard/art_mov1.png",
+                      "dateAdd": "01-05-2018",
+                      "links": "http://localhost/NoBlueCMS/api/categorias/3"
+                    },
+                    {
+                      "id": "2",
+                      "title": "La Momia 2",
+                      "title_url": "lamomia2",
+                      "photo": "./view/photo/billboard/art_mov2.png",
+                      "dateAdd": "03-05-2018",
+                      "links": "http://localhost/NoBlueCMS/api/categorias/1"
+                    },
+                    {
+                      "id": "3",
+                      "title": "Family Man",
+                      "title_url": "familyman",
+                      "photo": "./view/photo/billboard/art_mov3.png",
+                      "dateAdd": "09-05-2018",
+                      "links": "http://localhost/NoBlueCMS/api/categorias/4"
+                    }
+                ]
+              </pre>
+              <h4 id="list-item-5">Getting article by ID</h4>
+              <p>In the same way that when obtaining a category of de movie, with entering the id number of the article, the API will return all the information related to it.</p>
+              <p>Access with the <code> get () </code> method.</p>
+              <p class="example"><code>http://server/articulos/2</code></p>
+              <p>Result:</p><br>
+              <pre>
+                {
+                  "id": "3",
+                  "title": "Family Man",
+                  "title_url": "familyman",
+                  "billboard": "./view/photo/billboard/art_mov3.png",
+                  "dateAdd": "2018-05-09",
+                  "content_id": "3",
+                  "username": "carver",
+                  "links": [
+                    "http://localhost/NoBlueCMS/api/categorias/4"
+                  ]
+                 }
+              </pre>
+              <h4 id="list-item-6">API DOC</h4>
+              <p>Access the help documentation on the use easy of Api Rest.  <code>/api/doc/</code> </p> 
+              
+              <p class="example"><code>http://server/api/doc</code></p>
+              <h4 id="list-item-7">Otherwise error</h4>
+              <p>The use of resources accessible through the browser is limited. If you indicate a non-existent resource, the browser will indicate the wrong controlled access.</p> 
+              
+              <p class="example"><code>http://server/api/peliculas</code></p>        
+              <p>Result:</p><br>
+              <pre>
+                {
+                    "code": "405",
+                    "msg": "No existe web asociada al recurso"
+                }
+              </pre>
+          </div>           
+        </section>
+      </div>
+</body>
+</html>

@@ -112,6 +112,22 @@
 			return $articles;
 		}
 
+		public function NotFound($request, $response, $args){
+			$result =[];
+			$result['code']="405";
+			$result['msg'] = "No existe web asociada al recurso";
+			$response = $response->withJson($result);
+			return $response;
+			
+		}
+
+		public function loadDocAPI($request, $response, $args){
+			$categories=[];
+			$response = $this->c->view->render($response, "apiDOC.html", $categories);
+			return $response;
+		}
+ 
+
 		public function getResult($articles){
 			$result =[];
 			foreach ($articles as $key => $article) {

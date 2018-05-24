@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -53,17 +53,15 @@
 			</li>
 			<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categorias</a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 					   	<?php  
 					       	foreach ($founded as $key => $cat) {
 					       		$nameCat = $cat->name;
 					       		$id = $cat->id;
-					       		echo "<a class='dropdown-item' href='{$urlBase}/categoria/{$id}'>Películas de {$nameCat}</a>";
+					       		echo "<a class='dropdown-item categoryList' href='{$urlBase}/categoria/{$id}'>Películas de {$nameCat}</a>";
 					       	}
 					    ?>
-						<div class="dropdown-divider"></div>
-						    <a class="dropdown-item" href="#">Seguir buscando...</a>	        
-						</div>
+				</div>
       		</li>
 		</ul>
 	</div>
@@ -81,12 +79,11 @@
 					$photo = $article->billboard;
 					$date = $article->dateAdd;
 					echo "<div class='card'>";
-					echo "<img src='{$urlBase}{$photo}' class='card-img-top'></img>";
+					echo "<img src='{$urlBase}{$photo}' class='card-img-top' alt='Cartelera' />";
 					echo "<div class='card-body'>";
 					echo "<h5 class='card-title_ok'>{$title}</h5>";				
 					echo "<hr>";
 					echo "<small>{$date}</small>";
-					echo "</a>";
 					echo "</div>";
 					echo "<a href= '$urlBase/article/$url' class='boton btn btn-dark text-center'>Continuar <i class='fas fa-angle-double-right'></i></a>";
 					echo "</div>";

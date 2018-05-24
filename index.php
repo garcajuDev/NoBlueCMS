@@ -41,5 +41,7 @@
 	$app->get("/api/categorias/{id}", "\Controller:getCategoriesAPIId");
 	$app->get("/api/articulos/{id}", "\Controller:getArticleAPIId");
 	$app->get("/api/articulos/", "\Controller:getArticlesAPIFilter");
+	$app->get("/api/doc","\Controller:loadDocAPI");
+	$app->get("[/{params:.*}]","\Controller:NotFound");  //CV Add if route not valid  
 	$app->run();
 ?>

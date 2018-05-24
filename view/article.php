@@ -15,7 +15,6 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="<?php echo $urlBase; ?>/view/css/estilos.css">
-	<title>Article</title>
 </head>
 <body>
 	<div class="container-fluid">
@@ -58,11 +57,9 @@
 					       	foreach ($founded as $key => $cat) {
 					       		$nameCat = $cat->name;
 					       		$id = $cat->id;
-					       		echo "<a class='dropdown-item' href='{$urlBase}/categoria/{$id}'>Películas de {$nameCat}</a>";
+					       		echo "<a class='dropdown-item categoryList' href='{$urlBase}/categoria/{$id}'>Películas de {$nameCat}</a>";
 					       	}
 					    ?>
-				<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="#">Seguir buscando...</a>	        
 				</div>
       		</li>
 		</ul>
@@ -73,7 +70,10 @@
 			$title = $pelicula->title;
 			$url = $pelicula->title_url;
 			$billboard = $pelicula->billboard;
-			$fichaTecnica = explode(",",$pelicula->fichaTec);
+			$arrayExp = explode(",",$pelicula->fichaTec);
+			$infoPeli = array_slice($arrayExp, 0, 3);
+			$act = array_slice($arrayExp,3); 
+			$actores = implode(",",$act);
 			$photo1 = $pelicula->photo1;
 			$photo2 = $pelicula->photo2;
 			$intro = $pelicula->firstPart;
@@ -82,21 +82,27 @@
 	?>
 	<div class="container">
 		<div class="row mt-5">
-				<div class="col-lg-12"><img src="<?php echo $urlBase.$billboard;?>" class="img-thumbnail img_dossier">
+			<div class="col-lg-12"><img src="<?php echo $urlBase.$billboard;?>" class="img-thumbnail img_dossier" alt="Cartelera" />
 					<h3><?php echo "$title"; ?></h3>
-					<h4 class="h4_dossier"></h4>
-					<?php foreach ($fichaTecnica as $dato){
-						echo "<li>{$dato}</li>";
-					} ?>
+					<?php 
+					echo "<ul>";
+					 	foreach ($infoPeli as $dato){
+							echo "<li>{$dato}</li>";
+						} 
+					echo "</ul>";
+					echo "$actores";
+					?>
 					<br>
+				<div class="sipnosis">
 					<h3>Sipnosis</h3>
 					<?php 
 						echo "<p>$intro</p>";
-						echo "<img src = '{$urlBase}{$photo1}' class='dossier rounded float-left mt-3 mb-4'></img>";
-						echo "<img src = '{$urlBase}{$photo2}' class='dossier rounded mb-4 mt-3'></img>";
+						echo "<img src = '{$urlBase}{$photo1}' class='dossier rounded float-left mt-3 mb-4' alt='photo1' />";
+						echo "<img src = '{$urlBase}{$photo2}' class='dossier rounded mb-4 mt-3' alt='photo2' />";
 						echo "<p>$final</p>";
 					?>
 				</div>
+			</div>
 		</div>
 	</div>
 		<footer class="footer">

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -52,22 +52,20 @@
 			</li>
 			<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categorias</a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 					   	<?php  
 					       	foreach ($founded as $key => $cat) {
 					       		$nameCat = $cat->name;
 					       		$id = $cat->id;
- 					       		echo "<a class='dropdown-item' href='{$urlBase}/categoria/{$id}'>Películas de {$nameCat}</a>";
+ 					       		echo "<a class='dropdown-item categoryList' href='{$urlBase}/categoria/{$id}'>Películas de {$nameCat}</a>";
 					       	}
 					    ?>
-					<div class="dropdown-divider"></div>
-					    <a class="dropdown-item" href="#">Seguir buscando...</a>	        
-					</div>
+				</div>    
       		</li>
 		</ul>
 	</div>
 
-	<div class="container">
+	<div class="container fondo">
 			<div class="main mt-5">
 				<h3 class="mb-3">CATEGORIAS DE PELÍCULAS</h3>	
 					<div class="card-deck mb-5">
@@ -119,7 +117,7 @@
 	</section>
 
 			<hr>
-			
+
 		<footer class="footer">
 			<ul class="footer_list mt-5 ">
 				<li><a href="#">Web Pública -</a></li>

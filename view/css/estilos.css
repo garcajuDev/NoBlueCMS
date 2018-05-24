@@ -1,4 +1,5 @@
 body{
+	background-color:   #faea75;
 	font-family: 'Montserrat', sans-serif;
 }
 
@@ -245,8 +246,6 @@ footer{
 
 }
 
-
-
 .buttons{
 	display: flex;
 	justify-content: center;
@@ -323,6 +322,29 @@ img{
 	/* border: 0px;
 	border-bottom: 1px solid grey; */
 
+}
+
+.categoryList{
+	background-color:   #1d4a87 ;
+}
+
+.categoryList:hover{
+	background-color: #f9f2ec;
+	font-weight: bold;
+	color:  #1d4a87 ;
+}
+
+.sipnosis{
+	clear: both;
+}
+
+.sipnosis h3{
+	text-align: center;
+}
+
+.sipnosis p{
+	font-family: 'Montserrat', sans-serif;
+	font-size: 1em;
 }
 
 /* 
